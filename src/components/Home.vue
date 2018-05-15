@@ -18,24 +18,44 @@
         <lui-col class="h c" span="8">span: 8</lui-col>
       </lui-row>
     </div>
+
+    <!--badge-->
+    <div id="badgeWrap">
+      <lui-badge-group :activeKey="activeKey">
+        <lui-badge @click="badgeClick" title="badge1" info="99"></lui-badge>
+        <lui-badge @click="badgeClick" title="badge2"></lui-badge>
+        <lui-badge @click="badgeClick" title="badge3" info="233"></lui-badge>
+        <lui-badge @click="badgeClick" title="badge4" info="1"></lui-badge>
+      </lui-badge-group>
+
+    </div>
   </div>
 </template>
 
 <script>
   import LuiRow from "./row/lui-row.vue";
   import LuiCol from "./col/lui-col.vue"
+  import LuiBadgeGroup from './badge/badge-group.vue'
+  import LuiBadge from './badge/badge.vue'
 
   export default {
     name: 'Home',
     data(){
       return {
-        gutter: 24
+        gutter: 24,
+        activeKey:0
       }
     },
-
+    methods: {
+      badgeClick(key){
+        this.activeKey = key
+      }
+    },
     components: {
       LuiRow,
-      LuiCol
+      LuiCol,
+      LuiBadgeGroup,
+      LuiBadge
     }
   }
 </script>
@@ -54,5 +74,15 @@
     background-clip content-box
   .app
     padding 0 15px
-
+  #badgeWrap
+    .lui-badge-group
+      width auto
+      margin 0 15px
+      padding 20px 0
+      background: #fff
+      &::after
+        display: none
+  .lui-badge
+    width 85px
+    margin 0 auto
 </style>

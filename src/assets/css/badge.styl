@@ -1,0 +1,41 @@
+@import "~@/assets/css/common/var.styl"
+// 的badge是用a标签填充的
+.lui-badge
+  display block
+  overflow hidden // 创建BFC
+  font-size 14px
+  line-height 1.4
+  user-select none // 用户无法在这个地方开始选中文本
+  color $gray-dark
+  word-break break-all // 可以把单词截断的那种换行
+  box-sizing border-box
+  padding 20px 12px 20px 9px
+  background-color $background-color
+  border-left 3px solid transparent // 为选中的状态提供占位
+  &:active
+    background-color $active-color
+  &:not(last-child)::after
+    border-bottom-width 1px // 设置hariline宽度
+  &-group
+    width 85px
+  &--select
+    font-weight bold
+    color: $text-color
+    border-color: $red
+    &::after
+      border-right-width 1px // 选中的时候右侧需要一条竖线
+  &__info
+    position absolute
+    top 2px
+    right 2px
+    color $white
+    font-size 10px
+    transform scale(.8)
+    text-align center
+    box-sizing border-box
+    padding 0 6px
+    min-width 18px
+    line-height 18px
+    border-radius 9px // 一半可以做一个圆出来
+    background-color $red
+

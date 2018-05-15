@@ -1,0 +1,24 @@
+@import "~@/assets/css/mixins/border-retina.styl"
+
+// hairline 就是1px方案
+// [class*=lui-hairline] 表示包含lui-hairline的所有类元素都要加加上hairline()
+// 由于我们在hailine没有写border-hairline-top的width或者 border-hairline-right的width等等缩哟
+// 需要单独为每个.lui-hailine-top:after 设置1px的像素
+[class*='lui-hairline']
+  position relative
+  &:after
+    hairline()
+
+.lui-hairline
+  &--top:after
+    border-top-width 1px
+  &--right:after
+    border-right-width 1px
+  &--bottom:after
+    border-bottom-width 1px
+  &--left:after
+    border-left-width 1px
+  &--top-bottom:after
+    border-width 1px 0
+  &--suround:after
+    border-width 1px

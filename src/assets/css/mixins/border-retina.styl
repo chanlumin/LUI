@@ -1,0 +1,32 @@
+@import "~@/assets/css/common/var.styl"
+
+// pointer-evetns : none 元素永远不会成为鼠标的target
+$border-pos = top right bottom left
+
+border-retina(pos=$border-pos, borderColor=$gray-light)
+  content ''
+  position absolute
+  left 0
+  top 0
+  width 200%
+  height 200%
+  transform scale(0.5)
+  transform-origin left top
+  pointer-events none
+  box-sizing border-box
+  pos in $border-pos
+    border-{pos} 1px solid borderColor
+
+
+hairline(borderColor=$gray-light)
+  content ''
+  position absolute
+  left 0
+  top 0
+  width 200%
+  height 200%
+  transform scale(0.5)
+  transform-origin 0 0
+  pointer-events none
+  box-sizing border-box
+  border: 1px solid borderColor

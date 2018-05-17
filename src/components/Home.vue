@@ -29,6 +29,27 @@
       </lui-badge-group>
 
     </div>
+
+    <!--loading-->
+    <div id="wrap">
+      <lui-loading color="black"></lui-loading>
+      <lui-loading color="white"></lui-loading>
+      <lui-loading type="spinner" color="black"></lui-loading>
+      <lui-loading type="spinner" color="white"></lui-loading>
+    </div>
+
+    <div class="wrap">
+      <lui-button size="large">large</lui-button>
+      <lui-button size="normal">normal</lui-button>
+      <lui-button size="small">small</lui-button>
+      <lui-button size="mini">mini</lui-button>
+      <lui-button disabled>disabled</lui-button>
+      <lui-button loading/>
+      <lui-button type="default">default</lui-button>
+      <lui-button loading type="primary">disabled</lui-button>
+      <lui-button tag="a" href="https://www.baidu.com" target="_blank">disabled</lui-button>
+      <lui-button type="primary" bottomAction>bottomAction</lui-button>
+    </div>
   </div>
 </template>
 
@@ -37,6 +58,9 @@
   import LuiCol from "./col/lui-col.vue"
   import LuiBadgeGroup from './badge/badge-group.vue'
   import LuiBadge from './badge/badge.vue'
+  import LuiLoading from './loading/lui-loading.vue'
+
+  import LuiButton from './button/lui-button.vue'
 
   export default {
     name: 'Home',
@@ -55,7 +79,9 @@
       LuiRow,
       LuiCol,
       LuiBadgeGroup,
-      LuiBadge
+      LuiBadge,
+      LuiLoading,
+      LuiButton
     }
   }
 </script>
@@ -85,4 +111,11 @@
   .lui-badge
     width 85px
     margin 0 auto
+  .lui-loading
+    display inline-block
+    margin 5px 0 5x 20px
+  .lui-loading--white
+    background-color rgba(0, 0, 0, .5)
+  .wrap
+    margin 20px
 </style>

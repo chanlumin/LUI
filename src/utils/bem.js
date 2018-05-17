@@ -25,7 +25,8 @@ const prefix = (name, mods) => {
   // modes是数组的话 递归
   if(Array.isArray(mods)) {
     return mods.map(mod=> {
-      prefix(name,mod)
+      // console.log(mod)
+      return prefix(name,mod)
     })
   }
   // 处理对象类型
@@ -53,7 +54,7 @@ export const bMixin = {
 
       // 先把拼接name和下划线赋值给 el ex. => button 因为el是空 所以直接返回name
       el = join(name, el, ELEMENT)
-
+      // console.log(mods)
       // 处理mods 如果有传入mods文本参数的话 返回数组
       return mods ? [el,prefix(el, mods)] : el
     }

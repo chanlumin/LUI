@@ -1,0 +1,320 @@
+@import "./common/var.styl"
+
+@font-face
+  font-style normal
+  font-weight normal
+  font-family 'lui-icon'
+  src: url('https://img.yzcdn.cn/zanui/icon/vant-icon-4c3245.ttf') format('truetype')
+
+.lui-icon
+  position relative
+  display inline-block
+  // style variant weight font-size/line-height  =>font: italic small-caps bolder 16px/3 cursive;
+
+  font normal normal normal 14px/1 "lui-icon"
+  font-size inherit
+  text-rendering  auto
+  &__info
+    color #fff
+    left 50%
+    top = -.5em
+    font-size .5em
+    margin-left .8em
+    padding 0 .3em
+    text-align center
+    min-width 1.2em
+    line-height 1.2
+    position absolute
+    border-radius .6em
+    box-sizing border-box
+    background-color $red
+    font-family PingFang SC, Helvetica Neue, Arial, sans-serif
+  &:before
+    display inline-block
+
+
+.lui-icon-add-o:before {
+  content: "\F000";
+}
+.lui-icon-add:before {
+  content: "\F001";
+}
+.lui-icon-add2:before {
+  content: "\F002";
+}
+.lui-icon-after-sale:before {
+  content: "\F003";
+}
+.lui-icon-alipay:before {
+  content: "\F004";
+}
+.lui-icon-arrow-left:before {
+  content: "\F005";
+}
+.lui-icon-arrow:before {
+  content: "\F006";
+}
+.lui-icon-balance-details:before {
+  content: "\F007";
+}
+.lui-icon-balance-pay:before {
+  content: "\F008";
+}
+.lui-icon-birthday-privilege:before {
+  content: "\F009";
+}
+.lui-icon-browsing-history:before {
+  content: "\F00A";
+}
+.lui-icon-card:before {
+  content: "\F00B";
+}
+.lui-icon-cart:before {
+  content: "\F00C";
+}
+.lui-icon-cash-back-record:before {
+  content: "\F00D";
+}
+.lui-icon-cash-on-deliver:before {
+  content: "\F00E";
+}
+.lui-icon-certificate:before {
+  content: "\F00F";
+}
+.lui-icon-chat:before {
+  content: "\F010";
+}
+.lui-icon-check:before {
+  content: "\F011";
+}
+.lui-icon-checked:before {
+  content: "\F012";
+}
+.lui-icon-clear:before {
+  content: "\F013";
+}
+.lui-icon-clock:before {
+  content: "\F014";
+}
+.lui-icon-close:before {
+  content: "\F015";
+}
+.lui-icon-completed:before {
+  content: "\F016";
+}
+.lui-icon-contact:before {
+  content: "\F017";
+}
+.lui-icon-coupon:before {
+  content: "\F018";
+}
+.lui-icon-credit-pay:before {
+  content: "\F019";
+}
+.lui-icon-debit-pay:before {
+  content: "\F01A";
+}
+.lui-icon-delete:before {
+  content: "\F01B";
+}
+.lui-icon-description:before {
+  content: "\F01C";
+}
+.lui-icon-discount:before {
+  content: "\F01D";
+}
+.lui-icon-ecard-pay:before {
+  content: "\F01E";
+}
+.lui-icon-edit-data:before {
+  content: "\F01F";
+}
+.lui-icon-edit:before {
+  content: "\F020";
+}
+.lui-icon-exchange-record:before {
+  content: "\F021";
+}
+.lui-icon-exchange:before {
+  content: "\F022";
+}
+.lui-icon-fail:before {
+  content: "\F023";
+}
+.lui-icon-free-postage:before {
+  content: "\F024";
+}
+.lui-icon-gift-card-pay:before {
+  content: "\F025";
+}
+.lui-icon-gift-card:before {
+  content: "\F026";
+}
+.lui-icon-gift:before {
+  content: "\F027";
+}
+.lui-icon-gold-coin:before {
+  content: "\F028";
+}
+.lui-icon-goods-collect:before {
+  content: "\F029";
+}
+.lui-icon-home:before {
+  content: "\F02A";
+}
+.lui-icon-hot-sale:before {
+  content: "\F02B";
+}
+.lui-icon-hot:before {
+  content: "\F02C";
+}
+.lui-icon-info-o:before {
+  content: "\F02D";
+}
+.lui-icon-like-o:before {
+  content: "\F02E";
+}
+.lui-icon-like:before {
+  content: "\F02F";
+}
+.lui-icon-location:before {
+  content: "\F030";
+}
+.lui-icon-logistics:before {
+  content: "\F031";
+}
+.lui-icon-member-day-privilege:before {
+  content: "\F032";
+}
+.lui-icon-more-o:before {
+  content: "\F033";
+}
+.lui-icon-more:before {
+  content: "\F034";
+}
+.lui-icon-new-arrival:before {
+  content: "\F035";
+}
+.lui-icon-new:before {
+  content: "\F036";
+}
+.lui-icon-other-pay:before {
+  content: "\F037";
+}
+.lui-icon-passed:before {
+  content: "\F038";
+}
+.lui-icon-password-not-view:before {
+  content: "\F039";
+}
+.lui-icon-password-view:before {
+  content: "\F03A";
+}
+.lui-icon-pause:before {
+  content: "\F03B";
+}
+.lui-icon-peer-pay:before {
+  content: "\F03C";
+}
+.lui-icon-pending-deliver:before {
+  content: "\F03D";
+}
+.lui-icon-pending-evaluate:before {
+  content: "\F03E";
+}
+.lui-icon-pending-orders:before {
+  content: "\F03F";
+}
+.lui-icon-pending-payment:before {
+  content: "\F040";
+}
+.lui-icon-phone:before {
+  content: "\F041";
+}
+.lui-icon-photo:before {
+  content: "\F042";
+}
+.lui-icon-photograph:before {
+  content: "\F043";
+}
+.lui-icon-play:before {
+  content: "\F044";
+}
+.lui-icon-point-gift:before {
+  content: "\F045";
+}
+.lui-icon-points-mall:before {
+  content: "\F046";
+}
+.lui-icon-points:before {
+  content: "\F047";
+}
+.lui-icon-qr-invalid:before {
+  content: "\F048";
+}
+.lui-icon-qr:before {
+  content: "\F049";
+}
+.lui-icon-question:before {
+  content: "\F04A";
+}
+.lui-icon-receive-gift:before {
+  content: "\F04B";
+}
+.lui-icon-records:before {
+  content: "\F04C";
+}
+.lui-icon-search:before {
+  content: "\F04D";
+}
+.lui-icon-send-gift:before {
+  content: "\F04E";
+}
+.lui-icon-setting:before {
+  content: "\F04F";
+}
+.lui-icon-share:before {
+  content: "\F050";
+}
+.lui-icon-shop-collect:before {
+  content: "\F051";
+}
+.lui-icon-shop:before {
+  content: "\F052";
+}
+.lui-icon-shopping-cart:before {
+  content: "\F053";
+}
+.lui-icon-sign:before {
+  content: "\F054";
+}
+.lui-icon-stop:before {
+  content: "\F055";
+}
+.lui-icon-success:before {
+  content: "\F056";
+}
+.lui-icon-tosend:before {
+  content: "\F057";
+}
+.lui-icon-underway:before {
+  content: "\F058";
+}
+.lui-icon-upgrade:before {
+  content: "\F059";
+}
+.lui-icon-value-card:before {
+  content: "\F05A";
+}
+.lui-icon-wap-home:before {
+  content: "\F05B";
+}
+.lui-icon-wap-nav:before {
+  content: "\F05C";
+}
+.lui-icon-warn:before {
+  content: "\F05D";
+}
+.lui-icon-wechat:before {
+  content: "\F05E";
+}

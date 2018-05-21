@@ -6,19 +6,19 @@
 // 需要单独为每个.lui-hailine-top:after 设置1px的像素
 [class*='lui-hairline']
   position relative
-  &:after
+  &::after
     hairline()
 
 .lui-hairline
-  &--top:after
+  &--top::after
     border-top-width 1px
-  &--right:after
+  &--right::after
     border-right-width 1px
-  &--bottom:after
+  &--bottom::after
     border-bottom-width 1px
-  &--left:after
+  &--left::after
     border-left-width 1px
-  &--top-bottom:after
+  &--top-bottom::after
     border-width 1px 0
-  &--suround:after
+  &--suround::after
     border-width 1px

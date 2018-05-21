@@ -50,7 +50,33 @@
       <lui-button tag="a" href="https://www.baidu.com" target="_blank">disabled</lui-button>
       <lui-button type="primary" bottomAction>bottomAction</lui-button>
     </div>
+
+    <!--icon-->
+    <div class="wrap">
+      <lui-icon name="coupon"></lui-icon>
+      <span>coupon</span>
+    </div>
+
+
+    <!--cell-->
+    <lui-cell-group >
+      <lui-cell title="hello" value="world"></lui-cell>
+      <lui-cell title="hello" label="描述信息"></lui-cell>
+      <!--只设置value左侧的内容会左对齐-->
+      <lui-cell value="内容"></lui-cell>
+      <!--通过icon属性在标题左侧展示图标-->
+      <lui-cell value="内容"></lui-cell>
+      <!--通过传入isLink在右侧显示箭头-->
+      <lui-cell value="内容"></lui-cell>
+      <lui-cell value="内容">
+        <lui-icon slot="right-icon" name="search" class="lui-cell__right-icon"></lui-icon>
+      </lui-cell>
+    </lui-cell-group>
+
   </div>
+
+
+
 </template>
 
 <script>
@@ -59,8 +85,10 @@
   import LuiBadgeGroup from './badge/badge-group.vue'
   import LuiBadge from './badge/badge.vue'
   import LuiLoading from './loading/lui-loading.vue'
-
   import LuiButton from './button/lui-button.vue'
+  import LuiIcon from './icon/icon.vue'
+  import LuiCellGroup from './cell/cell-group.vue'
+  import LuiCell from './cell/cell.vue'
 
   export default {
     name: 'Home',
@@ -81,7 +109,10 @@
       LuiBadgeGroup,
       LuiBadge,
       LuiLoading,
-      LuiButton
+      LuiButton,
+      LuiIcon,
+      LuiCellGroup,
+      LuiCell
     }
   }
 </script>
@@ -118,4 +149,12 @@
     background-color rgba(0, 0, 0, .5)
   .wrap
     margin 20px
+  .lui-icon
+    display block
+    font-size 32px
+    /*margin 15px 0*/
+    color: rgba(69,90,100,.8)
+  .lui-cell-group
+    margin-bottom 20px
+
 </style>

@@ -73,6 +73,14 @@
       </lui-cell>
     </lui-cell-group>
 
+    <lui-circle v-model="currentRate1"
+                :rate="30"
+                :speed="100"
+                :text="text"
+                class="cl"
+
+    ></lui-circle>
+
   </div>
 
 
@@ -89,18 +97,26 @@
   import LuiIcon from './icon/icon.vue'
   import LuiCellGroup from './cell/cell-group.vue'
   import LuiCell from './cell/cell.vue'
+  import LuiCircle from './circle/circle.vue'
 
   export default {
     name: 'Home',
     data(){
       return {
+        rate: 30,
         gutter: 24,
-        activeKey:0
+        activeKey:0,
+        currentRate1 : 30
       }
     },
     methods: {
       badgeClick(key){
         this.activeKey = key
+      }
+    },
+    computed: {
+      text() {
+        return this.currentRate1.toFixed(0) + '%'
       }
     },
     components: {
@@ -112,7 +128,8 @@
       LuiButton,
       LuiIcon,
       LuiCellGroup,
-      LuiCell
+      LuiCell,
+      LuiCircle
     }
   }
 </script>
@@ -156,5 +173,6 @@
     color: rgba(69,90,100,.8)
   .lui-cell-group
     margin-bottom 20px
-
+  .cl
+    background #fef
 </style>

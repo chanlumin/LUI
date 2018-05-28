@@ -1,3 +1,8 @@
+import Vue from  'vue'
+
+// 判断vue是否运行在服务端
+const isServer = Vue.prototype.$isServer
+
 /**
  * 是否有定义
  * @param obj
@@ -9,5 +14,6 @@ function isDef(obj) {
 
 
 export {
-  isDef
+  isDef,
+  isServer
 }

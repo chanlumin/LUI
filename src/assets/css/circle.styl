@@ -1,0 +1,28 @@
+@import "./common/var.styl"
+
+.lui-circle
+  position relative
+  text-align center
+  display inline-block
+  svg
+    top 0
+    left 0
+    width 100%
+    height 100%
+    position absolute
+  &__layer
+    fill none
+    stroke-linecap round // 圆角边框
+    stroke-dasharray  3140 // stroke画整个圆
+    stroke-dashoffset 3140 // 这样就没有画圆了
+    transform rotate(90deg) // 开始的位置是圆的最左边的位置
+    transform-origin 530px 530px
+  &__text
+    top 50%
+    left 0
+    width 100%
+    position absolute
+    color $text-color
+    transform translateY(-50%)
+
+

@@ -74,12 +74,23 @@
     </lui-cell-group>
 
     <lui-circle v-model="currentRate1"
-                :rate="30"
+                :rate="rate"
                 :speed="100"
                 :text="text"
                 class="cl"
 
     ></lui-circle>
+    <lui-circle v-model="currentRate1"
+                :rate="rate"
+                :speed="100"
+                :text="text"
+                class="cl" :clockwise="false"
+
+    ></lui-circle>
+    <div>
+      <lui-button type="primary" size="small" @click="add">增加</lui-button>
+      <lui-button type="danger" size="small" @click="reduce">减少</lui-button>
+    </div>
 
   </div>
 
@@ -98,7 +109,7 @@
   import LuiCellGroup from './cell/cell-group.vue'
   import LuiCell from './cell/cell.vue'
   import LuiCircle from './circle/circle.vue'
-
+  const format = rate => Math.min(Math.max(rate,0),100)
   export default {
     name: 'Home',
     data(){
@@ -106,12 +117,19 @@
         rate: 30,
         gutter: 24,
         activeKey:0,
-        currentRate1 : 30
+        currentRate1 : 0
       }
     },
     methods: {
       badgeClick(key){
         this.activeKey = key
+      },
+      add() {
+        this.rate = format(this.rate + 20)
+        console.log(this.rate)
+      },
+      reduce() {
+        this.rate = format(this.rate - 20)
       }
     },
     computed: {

@@ -86,8 +86,57 @@
           stroke: `${this.layerColor}`,
           strokeWidth: `${this.strokeWidth}`
         }
+      }
+
+    },
+    watch: {
+      // rate是目标进度
+      rate: {
+        handler() {
+          this.startTime = Date.now()
+          // this.value
+          this.startRate = this.value
+          this.endRate = this.format(this.rate)
+
+          console.log('rate')
+          this.increase = this.endRate > this.startRate
+          // this.speed 动画速度 rate/s
+          // duration 就是需要多少时间
+          this.duration = Math.abs((this.startRate - this.endRate) * 1000 / this.speed)
+          // speed动画速度
+          if(this.speed) {
+            // 每次执行动画之前 先取消上一次的动画再执行
+            cancel(this.rafId)
+            this.rafId = raf(this.animate)
+          } else {
+            // 默认情况下 组件上的v-model会把 input但做event 此处触发input就会改变currentRate
+            // 如果没有动画速度的话 直接改变v-model的值到 this.endRate
+            this.$emit('input', this.endRate)
+          }
+
+        },
+        immediate: true
+      }
+    },
+    methods: {
+      animate() {
+        const now = Date.now()
+        // this.duration 就是增加的数值(目标值)
+        // 一个动画帧占整个需要完成的动画时间的百分比
+        const progress = Math.min((now - this.startTime)/ this.duration, 1)
+        // progress * (this.endRate-this.startRate) => 一秒钟走了多少的动画帧
+        const rate = progress * (this.endRate - this.startRate) + this.startRate
+        // 通知v-model当前的rate是多少
+        this.$emit('input', this.format(parseFloat(rate.toFixed(1))))
+        if(this.increase ? rate < this.endRate : rate > this.endRate) {
+          // 不断执行动画 知道 rate >= this.endRate 或者 rate < this.endRate结束执行
+          this.rafId = raf(this.animate)
+        }
+
       },
-      methods: {
+      format(rate) {
+        // 修正rate rate负数的画取0 然后rate只能在0到100之间
+        return Math.min(Math.max(rate, 0), 100)
       }
     }
   }

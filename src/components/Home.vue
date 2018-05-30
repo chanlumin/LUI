@@ -92,10 +92,17 @@
       <lui-button type="danger" size="small" @click="reduce">减少</lui-button>
     </div>
 
+    <div class="mb20">
+      <!-- collapse -->
+      <lui-collapse v-model="cActive">
+        <lui-collapse-item :title="title1">{{content1}}</lui-collapse-item>
+        <lui-collapse-item :title="title2">{{content2}}</lui-collapse-item>
+      </lui-collapse>
+    </div>
+
+
+
   </div>
-
-
-
 </template>
 
 <script>
@@ -109,6 +116,8 @@
   import LuiCellGroup from './cell/cell-group.vue'
   import LuiCell from './cell/cell.vue'
   import LuiCircle from './circle/circle.vue'
+  import LuiCollapse from './collapse/collapse.vue'
+  import LuiCollapseItem from './collapse/collaspe-item.vue'
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
     name: 'Home',
@@ -117,7 +126,12 @@
         rate: 30,
         gutter: 24,
         activeKey:0,
-        currentRate1 : 0
+        currentRate1 : 0,
+        title1: 'hello vue.js',
+        title2: 'hello wolrd',
+        content1: 'hello i i i i i i ',
+        content2: 'hi 前端框架 百家争鸣的时代',
+        cActive: [0] // 只有accordion才能传入一个值 0
       }
     },
     methods: {
@@ -147,7 +161,9 @@
       LuiIcon,
       LuiCellGroup,
       LuiCell,
-      LuiCircle
+      LuiCircle,
+      LuiCollapse,
+      LuiCollapseItem
     }
   }
 </script>
@@ -193,4 +209,6 @@
     margin-bottom 20px
   .cl
     background #fef
+  .mb20
+    margin 20px 0
 </style>

@@ -1,0 +1,21 @@
+@import "common/var.styl"
+
+.lui-collapse-item
+  &__title
+    .lui-cell__right-icon::before
+      transition .3s
+      transform rotate(90deg)
+    &::after
+      visibility hidden
+  &__content
+    // 隐藏的内容
+    padding 15px
+    background-color #fff
+  &--expanded
+    .lui-collapse-item__title
+      .lui-cell__right-icon::before
+        transform rotate(-90deg)
+      &::after
+        visibility visible
+
+

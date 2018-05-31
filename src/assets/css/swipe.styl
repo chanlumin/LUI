@@ -1,0 +1,42 @@
+@import "common/var.styl"
+$lui-swipe-indicator =  6px
+
+.lui-swipe
+  overflow hidden
+  position relative
+  user-select none
+  // 包含i
+  &__track
+    height 100%
+// 每个swipe-item子项
+  &-item
+    float left
+    height 100%
+  &__indicators
+    display flex
+    position absolute
+    left 50%
+    bottom 10px
+    transform translateX(-50%) // 配合left 50%可以实现居中
+    &--vertical
+      left 10px
+      top 50px
+      // 此处的bottom是为了覆盖掉上面的bottom 所以才设置了auto
+      bottom auto
+      flex-direction column
+      transform translateY(-50%)
+      .lui-swipe__indicator:not(:last-child)
+        margin-bottom $lui-swipe-indicator
+  // 小圆点
+  &__indicator
+    border-radius 100%
+    background-color $gray-dark
+    width $lui-swipe-indicator
+    height: $lui-swipe-indicator
+    &:not(:last-child)
+      margin-right $lui-swipe-indicator
+    &--active
+      background-color $orange
+
+
+

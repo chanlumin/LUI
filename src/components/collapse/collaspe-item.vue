@@ -50,7 +50,7 @@
     },
     created(){
       this.findParent('lui-collapse')
-      console.log(this.parent)
+//      console.log(this.parent)
       this.items.push(this)
     },
     destroyed() {

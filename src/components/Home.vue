@@ -100,6 +100,14 @@
       </lui-collapse>
     </div>
 
+    <div class="mb20">
+      <lui-swipe>
+        <lui-swipe-item>1</lui-swipe-item>
+        <lui-swipe-item>2</lui-swipe-item>
+        <lui-swipe-item>3</lui-swipe-item>
+      </lui-swipe>
+    </div>
+
 
 
   </div>
@@ -118,6 +126,9 @@
   import LuiCircle from './circle/circle.vue'
   import LuiCollapse from './collapse/collapse.vue'
   import LuiCollapseItem from './collapse/collaspe-item.vue'
+  import LuiSwipe from './swipe/swipe.vue'
+  import LuiSwipeItem from './swipe/swipe-item.vue'
+
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
     name: 'Home',
@@ -163,7 +174,9 @@
       LuiCell,
       LuiCircle,
       LuiCollapse,
-      LuiCollapseItem
+      LuiCollapseItem,
+      LuiSwipe,
+      LuiSwipeItem
     }
   }
 </script>

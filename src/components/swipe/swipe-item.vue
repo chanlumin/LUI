@@ -19,9 +19,10 @@
       style() {
         // 从父组件去结构vertical和width和height
         const {vertical, width, height} = this.$parent
+        // 垂直的时候他是height+'px' 不是垂直的话 默认是100%
         return {
           width : width + 'px',
-          height : height + 'px',
+          height : vertical ?  height + 'px' : '100%',
           transform: `translate${vertical?'Y': 'x'}(${this.offset}px)`
         }
       }
@@ -35,3 +36,7 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  /*@import "~@/assets/css/swipe.styl"*/
+</style>

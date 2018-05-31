@@ -224,4 +224,19 @@
     background #fef
   .mb20
     margin 20px 0
+  .lui-swipe
+    &-item
+      color darkred
+      font-size 20px
+      text-align center
+      line-height 150px
+    img
+      width 100%
+      height 240px
+      display block
+      padding 30px 60px
+      box-sizing border-box
+      background-color #fff
+      pointer-events none
+
 </style>

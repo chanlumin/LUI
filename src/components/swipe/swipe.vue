@@ -73,16 +73,19 @@
       this.initialize();
     },
     watch: {
-      initialize() {
+      swipes() {
         this.initialize()
       },
       initialSwipe(){
-
+        this.initialize()
       }
     },
     computed: {
       count() {
         return this.swipes.length
+      },
+      delta() {
+        return this.vertical ? this.deltaY : this.deltaX
       },
       // 返回当前外部swipe一个版面的长度
       size() {
@@ -106,6 +109,8 @@
         // 下面的[]是是为了写表达式子
         return {
           [this.vertical ? 'height' : 'width'] : `${this.trackSize}px`,
+          transitionDuration: `${this.swiping ? 0 : this.duration}ms`,
+          transform: `translate${this.vertical ? 'Y' : 'X'}(${this.offset}px)`
 
         }
       }
@@ -133,15 +138,81 @@
         // 通过event获取初始化参数 包含
         // deltaX deltaY offsetX offsetY startX startY
         this.touchStart(event)
+        this.correctPosition()
       },
-      onTouchMove(){
-
+      onTouchMove(event){
+        if(!this.touchable) return
+        this.touchMove(event)
+        if(this.vertical && this.direction == 'vertical'
+          || this.direction === 'horizontal') {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        // 调整移动的时候的offset => this.offset 用于下一步做判断
+        this.move(0,Math.min(Math.max(this.delta, -this.size),this.size))
       },
       onTouchEnd(){
-
+        if(!this.touchable) return
+        if(this.delta) {
+          const offset = this.vertical ? this.offsetY : this.offsetX
+          // 当offset > 50的时候才需要move
+          this.move(offset > 50 ? (this.delta > 0 ? -1 : 1) : 0)
+          // 重置swipping状态
+          this.swiping = false
+        }
       },
       move(move = 0, offset = 0) {
-//
+        // 解构是为了减少代码的长度书写 => this.delta => delta
+        const {delta, active, count, swipes, trackSize} = this
+        // 是否在第一张
+        const atFirst = active === 0
+        const atLast = active === count - 1
+        // 如果没有循环的话 那么在第一个位置和作为一个位置的到时候进行
+        // 想左移动 或想有移动的时候 直接返回
+        if(!this.loop &&
+          (
+            (atFirst && (offset > 0 || move < 0)) ||
+            (atLast && (offset < 0 || move > 0))
+          )
+        ) {
+          return
+        }
+
+        if(move) {
+          // 下面是修正第一张和最后一张的offset
+          // 如果向右移动而且active小于0等于-1 让最后的swipe-item的offset = 0
+          // active === -1的时候此时刚刚做过的动作是从第一张向右拖到第最后一张
+          // 这个时候刚刚translate最后一张到第一张 所以此时要将 offset置为0
+          if(active === -1) {
+
+            swipes[count - 1].offset = 0
+          }
+          // 一直是往左偏移的，如果还继续向左滑的时候就整体想做偏移一个trackSize 把第一张translate一个trackSize=>到最右边
+          // 所以此时的第一张的offset的值为一个trackSize
+          swipes[0].offset = atLast && move > 0 ? trackSize : ''
+
+          this.active += move
+        } else {
+          // 在第一张的时候如果只是拖动有那个趋势 先调整第一张和最后一张的offset
+          if(atFirst) {
+            // delta > 0 向右拖动(也即是有要从1拖动到最后一张的趋势) 所以提前设置第四章的swipe.offset(把他从最后一张移动到第一张)
+            swipes[count - 1].offset = delta > 0 ? -trackSize : 0
+          } else if(atLast) {
+            swipes[0].offset = delta < 0 ? trackSize : 0
+          }
+        }
+        this.offset = offset - this.active * this.size
+      },
+      correctPosition() {
+        // 从第一张到第四张 此时的active是-1
+        if(this.active <= -1) {
+          // 袖珍active到this.cout - 1
+          this.move(this.count) // 修正this.active
+        }
+        if(this.active >= this.count) {
+          // 从第四张跳到第一张 修正active到0
+          this.move(-this.count)
+        }
       }
     }
   }

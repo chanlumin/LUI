@@ -107,6 +107,11 @@
         <lui-swipe-item>3</lui-swipe-item>
       </lui-swipe>
     </div>
+    <div class="mb20">
+      <lui-list v-model="loading" :finished="finished" @load="onLoad">
+        <lui-cell v-for="item in list" :key="item" :title="item + ''"></lui-cell>
+      </lui-list>
+    </div>
 
 
 
@@ -128,6 +133,7 @@
   import LuiCollapseItem from './collapse/collaspe-item.vue'
   import LuiSwipe from './swipe/swipe.vue'
   import LuiSwipeItem from './swipe/swipe-item.vue'
+  import LuiList from './list/list.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -142,7 +148,11 @@
         title2: 'hello wolrd',
         content1: 'hello i i i i i i ',
         content2: 'hi 前端框架 百家争鸣的时代',
-        cActive: [0] // 只有accordion才能传入一个值 0
+        cActive: [0], // 只有accordion才能传入一个值 0,
+        list: [],
+        loading: false,
+        finished: false
+
       }
     },
     methods: {
@@ -155,6 +165,20 @@
       },
       reduce() {
         this.rate = format(this.rate - 20)
+      },
+      onLoad() {
+        setTimeout(()=> {
+
+          for(let i = 0; i < 10; i++) {
+            const text = this.list.length + 1
+            this.list.push(text < 10? '0' + text : text)
+          }
+          console.log(this.list.length)
+          this.loading= false
+          if(this.list.length >= 40) {
+            this.finished = true
+          }
+        }, 500)
       }
     },
     computed: {
@@ -176,7 +200,8 @@
       LuiCollapse,
       LuiCollapseItem,
       LuiSwipe,
-      LuiSwipeItem
+      LuiSwipeItem,
+      LuiList
     }
   }
 </script>

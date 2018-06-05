@@ -113,6 +113,11 @@
       </lui-list>
     </div>
 
+    <div class="mb20">
+      <lui-pull-refresh v-model="isLoading" @refresh="onRefresh">
+        <p>{{pCount}}</p>
+      </lui-pull-refresh>
+    </div>
 
 
   </div>
@@ -134,6 +139,7 @@
   import LuiSwipe from './swipe/swipe.vue'
   import LuiSwipeItem from './swipe/swipe-item.vue'
   import LuiList from './list/list.vue'
+  import LuiPullRefresh from './pullrefresh/pullrefresh.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -151,7 +157,9 @@
         cActive: [0], // 只有accordion才能传入一个值 0,
         list: [],
         loading: false,
-        finished: false
+        finished: false,
+        pCount: 0,
+        isLoading: false
 
       }
     },
@@ -179,6 +187,13 @@
             this.finished = true
           }
         }, 500)
+      },
+      onRefresh() {
+        setTimeout(()=> {
+          this.isLoading = false
+          this.isLoading = false
+          this.count++
+        }, 500)
       }
     },
     computed: {
@@ -201,7 +216,8 @@
       LuiCollapseItem,
       LuiSwipe,
       LuiSwipeItem,
-      LuiList
+      LuiList,
+      LuiPullRefresh
     }
   }
 </script>

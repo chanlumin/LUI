@@ -1,6 +1,17 @@
 <template>
   <div class="Home">
-    Home
+    <!--nav bar-->
+    <div class="mb20">
+      <lui-nav-bar title="导航栏"
+                   left-text="back"
+                   right-text="button"
+                   left-arrow
+                   @click-left="onClickLeft"
+                   @click-right="onClickRight"
+      >
+      </lui-nav-bar>
+    </div>
+
     <div class="mb20">
       <lui-pull-refresh v-model="isLoading" @refresh="onRefresh">
         <p>刷新次数: {{ pCount }}</p>
@@ -121,6 +132,7 @@
 
 
 
+
   </div>
 </template>
 
@@ -141,6 +153,7 @@
   import LuiSwipeItem from './swipe/swipe-item.vue'
   import LuiList from './list/list.vue'
   import LuiPullRefresh from './pullrefresh/pullrefresh.vue'
+  import LuiNavBar from './nav-bar/nav-bar.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -194,6 +207,12 @@
           this.isLoading = false
           this.pCount++
         }, 500)
+      },
+      onClickLeft() {
+        console.log('click left')
+      },
+      onClickRight() {
+        console.log('click right')
       }
     },
     computed: {
@@ -217,7 +236,8 @@
       LuiSwipe,
       LuiSwipeItem,
       LuiList,
-      LuiPullRefresh
+      LuiPullRefresh,
+      LuiNavBar
     }
   }
 </script>

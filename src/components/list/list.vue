@@ -74,14 +74,14 @@
     },
     methods: {
       onScroll() {
-        console.log(this.loading)
-        console.log(this.finished)
+//        console.log(this.loading)
+//        console.log(this.finished)
         // 正在loading 或者刚刚借宿
         if(this.loading || this.finished) {
           console.log('hi true')
           return
         }
-        console.log('hi guys true')
+//        console.log('hi guys true')
 
         const el = this.$el
         const {scroller} = this

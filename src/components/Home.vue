@@ -1,6 +1,11 @@
 <template>
   <div class="Home">
     Home
+    <div class="mb20">
+      <lui-pull-refresh v-model="isLoading" @refresh="onRefresh">
+        <p>刷新次数: {{ pCount }}</p>
+      </lui-pull-refresh>
+    </div>
     <div id="test">
       测试测试测试测试测试测试测试测试测试测试
     </div>
@@ -113,11 +118,7 @@
       </lui-list>
     </div>
 
-    <div class="mb20">
-      <lui-pull-refresh v-model="isLoading" @refresh="onRefresh">
-        <p>{{pCount}}</p>
-      </lui-pull-refresh>
-    </div>
+
 
 
   </div>
@@ -191,8 +192,7 @@
       onRefresh() {
         setTimeout(()=> {
           this.isLoading = false
-          this.isLoading = false
-          this.count++
+          this.pCount++
         }, 500)
       }
     },
@@ -223,7 +223,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="stylus" scoped>
+<style lang="stylus">
   @import "~@/assets/css/common/ellipse.styl"
   @import "~@/assets/css/common/var.styl"
   #test
@@ -279,5 +279,13 @@
       box-sizing border-box
       background-color #fff
       pointer-events none
+  .lui-pull-refresh
+    &,&__track
+      height 500px
+      background rgba(0,141,255,.56)
+      p
+        -webkit-margin-before 0
+        -webkit-margin-after 0
+
 
 </style>

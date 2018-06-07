@@ -1,5 +1,14 @@
 <template>
   <div class="Home">
+    <!--notice-bar-->
+    <div class="mb20">
+      <lui-notice-bar
+        text="你好,我们是这样子的哈哈哈哈哈就是这样子的"
+        left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png"
+      >
+
+      </lui-notice-bar>
+    </div>
     <!--nav bar-->
     <div class="mb20">
       <lui-nav-bar title="导航栏"
@@ -154,6 +163,7 @@
   import LuiList from './list/list.vue'
   import LuiPullRefresh from './pullrefresh/pullrefresh.vue'
   import LuiNavBar from './nav-bar/nav-bar.vue'
+  import LuiNoticeBar from './notice-bar/notice-bar.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -237,7 +247,8 @@
       LuiSwipeItem,
       LuiList,
       LuiPullRefresh,
-      LuiNavBar
+      LuiNavBar,
+      LuiNoticeBar
     }
   }
 </script>

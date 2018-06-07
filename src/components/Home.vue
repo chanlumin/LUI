@@ -1,5 +1,17 @@
 <template>
   <div class="Home">
+    <!--pagination-->
+    <div class="mb20">
+      <lui-pagination v-model="currentPage1"
+                      :total-items="24"
+                      :items-per-page="5"
+                      prev-text="上一页"
+                      next-text="下一页"
+
+      >
+
+      </lui-pagination>
+    </div>
     <!--notice-bar-->
     <div class="mb20">
       <lui-notice-bar
@@ -164,6 +176,7 @@
   import LuiPullRefresh from './pullrefresh/pullrefresh.vue'
   import LuiNavBar from './nav-bar/nav-bar.vue'
   import LuiNoticeBar from './notice-bar/notice-bar.vue'
+  import LuiPagination from './pagination/pagination.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -183,7 +196,8 @@
         loading: false,
         finished: false,
         pCount: 0,
-        isLoading: false
+        isLoading: false,
+        currentPage1: 1
 
       }
     },
@@ -248,7 +262,8 @@
       LuiList,
       LuiPullRefresh,
       LuiNavBar,
-      LuiNoticeBar
+      LuiNoticeBar,
+      LuiPagination
     }
   }
 </script>

@@ -59,6 +59,34 @@
       return {
         showNoticeBar: true,
         animationClass: '',
+        wrapWidth: 0,
+        duration: 0 ,
+        offsetWidth: 0,
+        firstRound: true
+      }
+    },
+    watch: {
+      text: {
+        handler() {
+          this.$nextTick(()=> {
+            const {wrap, content} = this.$refs
+            if(!wrap || !content) {
+              return
+            }
+            const wrapWidth = wrap.getBoundingClientRect().width
+            // 滚动条要滚动的长度
+            const offsetWidth = content.getBoundingClientRect().width
+            // 滚动的条件九四offsetWidth > wrapWidth才需要滚动
+            if(this.scrollable && offsetWidth > wrapWidth) {
+              this.wrapWidth = wrapWidth
+              this.offsetWidth = offsetWidth
+              this.duration = offsetWidth/this.speed
+              // 条件满足 加上class
+              this.animationClass = this.b('play')
+            }
+          })
+        },
+        immediate: true
       }
     },
     computed: {
@@ -68,19 +96,32 @@
           background:this.background
         }
       },
+      /**
+       * // 依赖firstRound和 this.duration的
+       *  用于判断是否是第几轮滚动不是第一轮的话就需要加上paddingLeft
+       */
       contentStyle(){
-
+        return {
+          paddingLeft: this.firstRound ? 0 : this.wrapWidth  + 'px',
+          animationDelay: (this.firstRound ? this.delay : 0 )  + 's',
+          animationDuration: this.duration + 's'
+        }
       },
       iconName(){
-
+        return this.mode === 'closeable' ? 'close' : this.mode === 'link' ? 'arrow' : ''
       }
     },
     methods: {
       onAnimationEnd(){
-
+        this.firstRound = false
+        this.$nextTick(()=> {
+          this.duration = (this.offsetWidth + this.wrapWidth) / this.speed
+          this.animationClass = this.b('play-infinite')
+        })
       },
       onClickIcon(){
-
+        // 让this.showNoticeBar等于fasle =>  此时的this.mode === 'closeable'
+        this.showNoticeBar = this.mode !== 'closeable" '
       }
     }
   }

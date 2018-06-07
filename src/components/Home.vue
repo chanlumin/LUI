@@ -3,7 +3,7 @@
     <!--notice-bar-->
     <div class="mb20">
       <lui-notice-bar
-        text="你好,我们是这样子的哈哈哈哈哈就是这样子的"
+        text="你好,我们是这样子的哈哈哈哈哈哈哈就是这样子哈哈就是这样子哈哈就是这样子哈哈就是这样子就是这样子的"
         left-icon="//img.yzcdn.cn/public_files/2017/8/10/6af5b7168eed548100d9041f07b7c616.png"
       >
 

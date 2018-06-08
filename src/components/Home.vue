@@ -3,10 +3,30 @@
     <!--pagination-->
     <div class="mb20">
       <lui-pagination v-model="currentPage1"
-                      :total-items="24"
+                      :total-items="100"
                       :items-per-page="5"
                       prev-text="上一页"
                       next-text="下一页"
+
+      >
+
+      </lui-pagination>
+      <lui-pagination v-model="currentPage1"
+                      :total-items="100"
+                      :items-per-page="5"
+                      prev-text="上一页"
+                      next-text="下一页"
+                      force-ellipses
+
+      >
+
+      </lui-pagination>
+      <lui-pagination v-model="currentPage1"
+                      :total-items="100"
+                      :items-per-page="5"
+                      prev-text="上一页"
+                      next-text="下一页"
+                      mode="simple"
 
       >
 

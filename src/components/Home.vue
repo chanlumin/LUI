@@ -1,5 +1,9 @@
 <template>
   <div class="Home">
+    <!--progress-->
+    <div class="mb20">
+      <lui-progress :percentage="50"></lui-progress>
+    </div>
     <!--panel-->
     <div class="mb20">
       <lui-panel title="这就是哈哈哈"
@@ -209,6 +213,7 @@
   import LuiNoticeBar from './notice-bar/notice-bar.vue'
   import LuiPagination from './pagination/pagination.vue'
   import LuiPanel from './panel/panel.vue'
+  import LuiProgress from './progress/progress.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -296,7 +301,8 @@
       LuiNavBar,
       LuiNoticeBar,
       LuiPagination,
-      LuiPanel
+      LuiPanel,
+      LuiProgress
     }
   }
 </script>

@@ -2,7 +2,22 @@
   <div class="Home">
     <!--progress-->
     <div class="mb20">
-      <lui-progress :percentage="50"></lui-progress>
+      <lui-progress :percentage="50" class=""mb20></lui-progress>
+      <lui-progress
+        class="mb20"
+        :percentage="75"
+        pivot-text="紫色"
+        pivot-color="#7232dd"
+        color="linear-gradient(to right, #be99ff, #7232dd)"
+      >
+
+      </lui-progress>
+      <lui-progress
+        :percentage="50"
+        pivot-text="红色"
+        color="#f3594b"
+        class="mb20"
+      ></lui-progress>
     </div>
     <!--panel-->
     <div class="mb20">

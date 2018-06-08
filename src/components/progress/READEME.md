@@ -1,7 +1,10 @@
 [TOC]
 
 # Progress
+>
 
+1. 先获取progressWidth和pivotWidth
+2. 进行依赖计算portionWidth
 ## 进度条
 ## 参数 props
 
@@ -12,4 +15,3 @@
 5. text-color(进度条文字颜色) type String default => #fff
 6. pivot-text(文字显示) type String 百分比文字
 7. pivot-color(文字背景颜色) type String  与进度条颜色一致
-

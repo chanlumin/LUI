@@ -1,5 +1,17 @@
 <template>
   <div class="Home">
+    <!--rate-->
+    <div class="mb20">
+      <lui-rate
+        v-model="rate1"
+        :size="25"
+        :count="6"
+        color="#2ba"
+        void-color="#ceefe8"
+      >
+
+      </lui-rate>
+    </div>
     <!--progress-->
     <div class="mb20">
       <lui-progress :percentage="50" class=""mb20></lui-progress>
@@ -229,6 +241,7 @@
   import LuiPagination from './pagination/pagination.vue'
   import LuiPanel from './panel/panel.vue'
   import LuiProgress from './progress/progress.vue'
+  import LuiRate from './rate/rate.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -249,7 +262,8 @@
         finished: false,
         pCount: 0,
         isLoading: false,
-        currentPage1: 1
+        currentPage1: 1,
+        rate1: 3
 
       }
     },
@@ -317,7 +331,8 @@
       LuiNoticeBar,
       LuiPagination,
       LuiPanel,
-      LuiProgress
+      LuiProgress,
+      LuiRate
     }
   }
 </script>

@@ -1,5 +1,12 @@
 <template>
   <div class="Home">
+    <!--panel-->
+    <lui-panel title="这就是哈哈哈"
+               desc="描述内容"
+               status="状态"
+    >
+      <div>随便填写一些slot上面的内功</div>
+    </lui-panel>
     <!--pagination-->
     <div class="mb20">
       <lui-pagination v-model="currentPage1"
@@ -197,6 +204,7 @@
   import LuiNavBar from './nav-bar/nav-bar.vue'
   import LuiNoticeBar from './notice-bar/notice-bar.vue'
   import LuiPagination from './pagination/pagination.vue'
+  import LuiPanel from './panel/panel.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -283,7 +291,8 @@
       LuiPullRefresh,
       LuiNavBar,
       LuiNoticeBar,
-      LuiPagination
+      LuiPagination,
+      LuiPanel
     }
   }
 </script>

@@ -1,12 +1,16 @@
 <template>
   <div class="Home">
     <!--panel-->
-    <lui-panel title="这就是哈哈哈"
-               desc="描述内容"
-               status="状态"
-    >
-      <div>随便填写一些slot上面的内功</div>
-    </lui-panel>
+    <div class="mb20">
+      <lui-panel title="这就是哈哈哈"
+                 desc="描述内容"
+                 status="状态"
+      >
+        <div>随便填写一些slot上面的内功</div>
+        <div slot="footer">随便填写一些slot上面的内功</div>
+      </lui-panel>
+    </div>
+
     <!--pagination-->
     <div class="mb20">
       <lui-pagination v-model="currentPage1"
@@ -361,6 +365,7 @@
       p
         -webkit-margin-before 0
         -webkit-margin-after 0
-
+  .lui-panel__content
+    padding: 20px
 
 </style>

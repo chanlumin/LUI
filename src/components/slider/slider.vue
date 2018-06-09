@@ -50,6 +50,8 @@
     computed: {
       barStyle() {
         return {
+          width: this.format(this.value) + '%',
+          height :this.barHeight
         }
       }
     },
@@ -65,6 +67,16 @@
       },
       onTouchEnd() {
 
+      },
+      /**
+       * 由于在拖动的时候会有很多位小数点的情况发生
+       * format作用就是将这些小数点 变为正数
+       * Math.max(this.min, Math.min(this.value, this.max))
+       * 上面这一段代码其实就是把this.value取出来 但是这样做的意义?
+       * @param value
+       */
+      format(value) {
+        return (Math.round(Math.max(this.min, Math.min(this.value, this.max))/this.step) * this.step )
       }
     },
     mounted() {

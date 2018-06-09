@@ -49,17 +49,47 @@
       }
     },
     data(){
+      let value = this.value ? this.value : +this.defaultValue
+      const correctdValue = this.correctValue(value)
+      if(value !== correctdValue) {
+        value = correctdValue
+        // value 改变的时候触发v-model的event
+        this.$emit('input', value)
+      }
       return {
-        currentValue: 1
+        currentValue: value
       }
     },
     computed: {
-      minusDisabled() {},
-      plusDisabled(){}
+      minusDisabled() {
+        const min = this.min
+        const step = +this.step
+        const currentValue = +this.currentValue
+        return min === currentValue || (currentValue - step) < min || this.disabled
+      },
+      plusDisabled(){
+        const max = this.max
+        const step = +this.step
+        const currentValue = +this.currentValue
+        return max === currentValue || (currentValue + step) > max || this.disabled
+      }
 
     },
     methods: {
       onChange(type){
+        // type判断 disabled判断
+        if((this.minusDisabled && type === 'minus')|| (this.plusDisabled && type=== 'plus')) {
+          this.$emit('overlimit',type)
+          return
+        }
+        // 2. step的加减 + 是因为有可能会有 + 号这个东西存在
+        const step = +this.step
+        console.log(type,'type')
+        const currentValue = +this.currentValue
+        this.currentValue = type === 'minus' ? (currentValue - step) : (currentValue + step)
+        this.emitInput()
+        console.log('after emit')
+        this.$emit(type)
 
       },
       onInput(){
@@ -67,7 +97,41 @@
       },
       onKeypress(){
 
+      },
+      /**
+       * 纠正传递过来的值
+       * 限制在min和max之间
+       * 没用if的写法
+       * @param value
+       * @returns {number}
+       */
+      correctValue(value) {
+        return  isNaN(value) ?
+          this.min :
+          Math.max(this.min, Math.min(value, this.max))
+      },
+      emitInput() {
+        this.$emit('input', this.currentValue)
+        console.log('emit input', this.currentValue)
+        this.$emit('change', this.currentValue)
       }
+    },
+    watch: {
+      // 每次current改变的的时候 有可能会超过限制的范围
+      // 所以在watch correctValue
+      value(val) {
+        if(val !=='') {
+          console.log(val,'val')
+          console.log(this.currentValue,'val-cur')
+          val = this.correctValue(+val)
+
+          console.log(val, 'val-after')
+          // 可能val 已经是-1 之类的 此时就要correctValue
+          if(val !== this.currentValue) {
+            this.currentValue = val
+          }
+        }
+      },
     },
     mounted() {
       console.log('stepper',this.value)

@@ -5,7 +5,7 @@
       <lui-stepper
         v-model="stepper1"
         integer
-        :min="5"
+        :min="1"
         :max="40"
         :step="2"
         :default-value="9"

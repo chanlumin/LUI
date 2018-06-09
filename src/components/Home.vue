@@ -1,5 +1,12 @@
 <template>
   <div class="Home">
+    <!--slider-->
+    <div class="mb20">
+      <lui-slider v-model="svalue" :min="10" :max="90"
+      @change="sliderOnChanger"
+      >
+      </lui-slider>
+    </div>
     <!--rate-->
     <div class="mb20">
       <lui-rate
@@ -242,6 +249,7 @@
   import LuiPanel from './panel/panel.vue'
   import LuiProgress from './progress/progress.vue'
   import LuiRate from './rate/rate.vue'
+  import LuiSlider from './slider/slider.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -263,7 +271,8 @@
         pCount: 0,
         isLoading: false,
         currentPage1: 1,
-        rate1: 3
+        rate1: 3,
+        svalue: 20
 
       }
     },
@@ -303,6 +312,8 @@
       },
       onClickRight() {
         console.log('click right')
+      },
+      sliderOnChanger() {
       }
     },
     computed: {
@@ -332,7 +343,8 @@
       LuiPagination,
       LuiPanel,
       LuiProgress,
-      LuiRate
+      LuiRate,
+      LuiSlider
     }
   }
 </script>

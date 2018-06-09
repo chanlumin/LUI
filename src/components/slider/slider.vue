@@ -59,14 +59,44 @@
       onClick() {
 
       },
-      onTouchStart(){
-
+      // touchStart一定是从button那个位置开始拖动的
+      // 所以可以记录当前的startValue
+      onTouchStart(event){
+        console.log(event,'start')
+        if(this.disabled) {
+          return
+        }
+        this.touchStart(event)
+        this.startValue = this.format(this.value)
+        console.log(this.startValue,'startValue')
       },
-      onTouchMove() {
-
+      onTouchMove(event) {
+        if(this.disabled) {
+          return
+        }
+        this.touchMove(event)
+        // 此时的rect是最外层的容器的rect
+        const rect = this.$el.getBoundingClientRect()
+        // 百分比* 100
+        const diff = this.deltaX / rect.width * 100
+        console.log(this.startValue+ diff, 'diffvalue')
+        this.updateValue(this.startValue + diff)
       },
-      onTouchEnd() {
+      onTouchEnd(event) {
+        if(this.disabled) return
+        // 结束的时候只需要重新调用胰腺癌this.updateValue即可
+        this.updateValue(this.value, true)
+      },
+      updateValue(value, end) {
+        if(this.disabled) return
+        console.log(value,'updateValule')
 
+        value = this.format(value)
+        this.$emit('input',value)
+
+        if(end) {
+          this.$emit('change', value)
+        }
       },
       /**
        * 由于在拖动的时候会有很多位小数点的情况发生
@@ -76,7 +106,7 @@
        * @param value
        */
       format(value) {
-        return (Math.round(Math.max(this.min, Math.min(this.value, this.max))/this.step) * this.step )
+        return (Math.round(Math.max(this.min, Math.min(value, this.max))/this.step) * this.step )
       }
     },
     mounted() {

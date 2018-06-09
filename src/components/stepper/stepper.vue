@@ -92,11 +92,18 @@
         this.$emit(type)
 
       },
-      onInput(){
+      onInput(event){
+        const {value} = event.target
+        this.currentValue = value ? this.correctValue(value) : value
+        // 源码加了这一句 ？
+//        event.target.value = this.currentValue;
 
+        this.emitInput()
       },
-      onKeypress(){
-
+      onKeypress(event){
+        if(this.integer && event.keyCode === 46) {
+          event.preventDefault()
+        }
       },
       /**
        * 纠正传递过来的值

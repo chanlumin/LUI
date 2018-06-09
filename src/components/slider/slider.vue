@@ -56,8 +56,12 @@
       }
     },
     methods: {
-      onClick() {
-
+      onClick(event) {
+        if(this.disabled) return
+        const rect = this.$el.getBoundingClientRect()
+        // 利用相对于屏幕左边的位置的diff 来计算偏移量
+        const value = (event.clientX - rect.left)/rect.width * 100
+        this.updateValue(value, true)
       },
       // touchStart一定是从button那个位置开始拖动的
       // 所以可以记录当前的startValue

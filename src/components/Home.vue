@@ -6,6 +6,16 @@
       @change="sliderOnChanger"
       >
       </lui-slider>
+
+      <lui-slider
+        v-model="svalue"
+        :step="10"
+        bar-height="4px"
+        @change="onChange"
+        class="mb20"
+      >
+
+      </lui-slider>
     </div>
     <!--rate-->
     <div class="mb20">

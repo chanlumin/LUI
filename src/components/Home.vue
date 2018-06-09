@@ -1,5 +1,19 @@
 <template>
   <div class="Home">
+    <!--stepper-->
+    <div class="mb20">
+      <lui-stepper
+        v-model="stepper1"
+        integer
+        :min="5"
+        :max="40"
+        :step="2"
+        :default-value="9"
+      >
+
+      </lui-stepper>
+    </div>
+
     <!--slider-->
     <div class="mb20">
       <lui-slider v-model="svalue" :min="10" :max="90"
@@ -11,7 +25,7 @@
         v-model="svalue"
         :step="10"
         bar-height="4px"
-        @change="onChange"
+        @change="sliderOnChanger"
         class="mb20"
       >
 
@@ -260,6 +274,7 @@
   import LuiProgress from './progress/progress.vue'
   import LuiRate from './rate/rate.vue'
   import LuiSlider from './slider/slider.vue'
+  import LuiStepper from './stepper/stepper.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -282,7 +297,8 @@
         isLoading: false,
         currentPage1: 1,
         rate1: 3,
-        svalue: 20
+        svalue: 20,
+        stepper1: 1
 
       }
     },
@@ -354,7 +370,8 @@
       LuiPanel,
       LuiProgress,
       LuiRate,
-      LuiSlider
+      LuiSlider,
+      LuiStepper
     }
   }
 </script>

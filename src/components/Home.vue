@@ -1,5 +1,17 @@
 <template>
   <div class="Home">
+    <!--steps-->
+    <div class="mb20">
+      <lui-steps :active="active">
+        <lui-step>{{step1}}</lui-step>
+        <lui-step>{{step2}}</lui-step>
+        <lui-step>{{step3}}</lui-step>
+        <lui-step>{{step4}}</lui-step>
+      </lui-steps>
+      <lui-button @click="nextStep">{{ nestep }}</lui-button>
+
+    </div>
+
     <!--stepper-->
     <div class="mb20">
       <lui-stepper
@@ -275,6 +287,8 @@
   import LuiRate from './rate/rate.vue'
   import LuiSlider from './slider/slider.vue'
   import LuiStepper from './stepper/stepper.vue'
+  import LuiSteps from './steps/steps.vue'
+  import LuiStep from './steps/step.vue'
 
   const format = rate => Math.min(Math.max(rate,0),100)
   export default {
@@ -298,7 +312,13 @@
         currentPage1: 1,
         rate1: 3,
         svalue: 20,
-        stepper1: 1
+        stepper1: 1,
+        active: 1,
+        step1: '买家下单',
+        step2: '商家结货',
+        step3: '买家提货',
+        step4: '交易完成',
+        nestep:'下一步'
 
       }
     },
@@ -340,6 +360,9 @@
         console.log('click right')
       },
       sliderOnChanger() {
+      },
+      nextStep() {
+        this.active = ++this.active %4
       }
     },
     computed: {
@@ -371,7 +394,9 @@
       LuiProgress,
       LuiRate,
       LuiSlider,
-      LuiStepper
+      LuiStepper,
+      LuiSteps,
+      LuiStep
     }
   }
 </script>
